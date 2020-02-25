@@ -1,0 +1,30 @@
+syntax = "proto3";
+
+// Order book manager
+message OrderBookEntry {
+  double price = 1;
+  double quantity = 2;
+}
+
+message OrderBookRequest {
+  string exchange = 1;
+  string symbol = 2;
+}
+
+message OrderBookUpdatesRequest {
+  OrderBookRequest request = 1;
+  uint32 limit = 2;
+}
+
+message OrderBookResponse {
+  int64 last_update = 1;
+  string exchange = 2;
+  string symbol = 3;
+  repeated OrderBookEntry asks = 4;
+  repeated OrderBookEntry bids = 5;
+}
+
+service OrderBookManager {
+  rpc OrderBook(OrderBookRequest) returns (OrderBookResponse);
+  rpc Updates(OrderBookUpdatesRequest) returns (stream OrderBookResponse);
+}
