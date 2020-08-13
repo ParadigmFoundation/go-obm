@@ -2,6 +2,7 @@ package obm
 
 import (
 	"strconv"
+	"time"
 )
 
 type Entry struct {
@@ -27,6 +28,7 @@ type Entries []*Entry
 
 type Update struct {
 	Symbol string
+	Time   time.Time
 	Bids   Entries
 	Asks   Entries
 }

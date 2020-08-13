@@ -148,6 +148,7 @@ func (x *Exchange) handleJSON(ws *websocket.Conn, sub exchange.Subscriber) error
 // NewUpdate returns a new obm.Update given a coinbasepro.Message
 func newUpdates(msg *coinbasepro.Message) (*obm.Update, error) {
 	var updates = obm.Update{
+		Time:   msg.Time.Time(),
 		Symbol: coinbase2symbol(msg.ProductID),
 	}
 
